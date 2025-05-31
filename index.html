@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Empty Launcher</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- ===================================Windows Buttons============================================= -->
+  <div class="title-bar">
+    <div class="window-controls">
+        <button id="settingsBtn">
+    <img src="assets/icons/settings.svg" alt="Settings" />
+  </button>
+      <button onclick="window.api.minimize()">–</button>
+      <button onclick="window.api.maximize()">☐</button>
+      <button onclick="window.api.close()">✕</button>
+    </div>
+  </div>
+<!-- ===================================Windows Buttons============================================ -->
+<div id="settingsPopupContainer"></div><!-- 👈 khung sẽ chứa nội dung popupsettings.html -->
+
+<script>
+  const settingsBtn = document.getElementById("settingsBtn");          // Nút ⚙ để mở popup
+  const container = document.getElementById("settingsPopupContainer"); // Vùng sẽ hiển thị nội dung popup
+settingsBtn.addEventListener("click", async () => {                    // Gắn sự kiện khi bấm nút ⚙
+    if (!container.innerHTML.trim()) {                                 // Nếu chưa có nội dung bên trong container
+      const res = await fetch("popupsettings.html");                   // Gửi yêu cầu tải file popupsettings.html
+      const html = await res.text();                                   // Lấy nội dung HTML dạng chuỗi
+      container.innerHTML = html;                                      // Đưa nội dung vào vùng container (hiển thị popup)
+      const closeBtn = document.getElementById("closeSettings");       // Tìm nút ✕ bên trong popup vừa load
+      closeBtn?.addEventListener("click", () => {                      // Nếu có nút ✕, gắn sự kiện click
+        container.innerHTML = "";                                      // Khi bấm ✕ thì xóa nội dung popup (ẩn đi)
+      });
+    }
+  });
+</script>
+</body>
+</html>

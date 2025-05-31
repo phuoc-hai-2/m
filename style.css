@@ -1,0 +1,132 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  background-color: #1e1e1e;
+  font-family: sans-serif;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+body {
+  border-radius: 16px; /* ✅ Bo góc ở đây */
+  background-color: #1e1e1e; /* hoặc màu bạn muốn */
+}
+.title-bar {
+  width: 100%;
+  height: 32px;
+  background-color: #1e1e1e;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  -webkit-app-region: drag;
+}
+
+.window-controls {
+  display: flex;
+  gap: 6px;
+  padding-right: 10px;
+  -webkit-app-region: no-drag;
+}
+
+.window-controls button {
+  -webkit-app-region: no-drag;
+  width: 32px;
+  height: 100%;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.window-controls button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.window-controls button img {
+  width: 16px;
+  height: 16px;
+  filter: invert(1); /* Nếu SVG màu đen, đảo màu để hiển thị trắng */
+  pointer-events: none; /* Đảm bảo bấm được nút, không bị ảnh che */
+}
+/*========================Giao diện Poppup======================*/
+/*=============setting tổng thể Poppup========*/
+.popup-wrapper {
+  position: fixed; /* 👈 Giữ popup cố định ở một vị trí trên màn hình, không bị cuộn theo nội dung trang*/
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px; /* 👈 Điều chỉnh kích thước popup*/
+  background-color: #2a2a2a; /* 👈 Màu nền popup*/
+  border-radius: 12px; /* 👈 Bo tròn 4 góc popup*/
+  box-shadow: 0 0 15px rgba(0,0,0,0.5); /* 👈 Đổ bóng nhẹ xung quanh popup*/
+  color: white; /*Màu chữ bên trong popup*/
+  padding: 20px; /* 👈 Điều chỉnh khoảng cách bên trong Popup*/
+  z-index: 9999; /*👈 Đảm bảo popup nằm trên cùng tất cả phần tử khác, không bị che*/
+  display: none; /*👈 Ẩn popup lúc đầu (chưa hiện), chỉ khi bấm nút mới hiện lên*/
+}
+/*=============setting tổng thể Poppup========*/
+.popup-container {
+  display: flex;
+  width: 720px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.popup-sidebar {
+  width: 180px;
+  background: #2a2a2a;
+  padding: 20px 0;
+  color: white;
+}
+
+.popup-sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.popup-sidebar li {
+  padding: 12px 24px;
+  cursor: pointer;
+}
+
+.popup-sidebar li.active,
+.popup-sidebar li:hover {
+  background-color: #3a3a3a;
+  border-radius: 8px;
+}
+
+.popup-content {
+  flex: 1;
+  padding: 20px;
+  color: white;
+  background: #1f1f1f;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.popup-header button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.popup-body {
+  font-size: 14px;
+  line-height: 1.8;
+}
